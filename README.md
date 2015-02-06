@@ -1,7 +1,7 @@
 # fixit
 
 fixit makes elements fix or snap to particular position while scrolling
-* less than 1.6kB
+* less than 1.8kB
 * it takes into account the scroll direction and hence fix bottom of menu while scrolling down, and top of menu while scrolling up
 * it changes margin-top of already fixed elements when horizontal menu comes and fixes on top
 * [Live Demo](http://code.mgvz.com/fixit/)
