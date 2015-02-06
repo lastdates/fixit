@@ -37,6 +37,7 @@
 <li>less than 1.6kB</li>
 <li>it takes into account the scroll direction and hence fix bottom of menu while scrolling down, and top of menu while scrolling up</li>
 <li>it changes margin-top of already fixed elements when horizontal menu comes and fixes on top</li>
+<li><a href="http://code.mgvz.com/fixit/">Live Demo</a></li>
 </ul>
 
 <p>To include</p>
@@ -44,9 +45,9 @@
 <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
 &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>jquery.fixit.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
-<p>To add elements</p>
+<p>To add elements (can also add elements one-by-one)</p>
 
-<div class="highlight highlight-javascript"><pre>$(<span class="pl-s3">document</span>).fixit({
+<div class="highlight highlight-javascript"><pre>$(<span class="pl-s3">document</span>).fixit({ <span class="pl-c">// options</span>
   t<span class="pl-k">:</span><span class="pl-c1">20</span>, <span class="pl-c">// to set fixed area on top of page</span>
   b<span class="pl-k">:</span><span class="pl-c1">30</span>, <span class="pl-c">// to set fixed area on bottom of page</span>
   f<span class="pl-k">:</span>[], <span class="pl-c">// to add list of floating menus</span>
@@ -54,7 +55,7 @@
   tL<span class="pl-k">:</span>$(selector) <span class="pl-c">//to add list of elements whose position is to change when fx elements fixes on top and changes windows view area</span>
 });
 
-$(<span class="pl-s3">document</span>).fixit({
+$(<span class="pl-s3">document</span>).fixit({ <span class="pl-c">// adding elements to float while scrolling</span>
   f<span class="pl-k">:</span>[
     {
       e<span class="pl-k">:</span>$(selector), <span class="pl-c">// element to float within Parent, parent should have greater height than element</span>
@@ -66,7 +67,7 @@ $(<span class="pl-s3">document</span>).fixit({
   ]
 });
 
-$(<span class="pl-s3">document</span>).fixit({
+$(<span class="pl-s3">document</span>).fixit({ <span class="pl-c">// adding elements to fix on top</span>
   fx<span class="pl-k">:</span>[
     {
       e<span class="pl-k">:</span>$(selector), <span class="pl-c">// element to fix on top while scrolling</span>
@@ -80,10 +81,6 @@ $(<span class="pl-s3">document</span>).fixit({
 <p>To update</p>
 
 <div class="highlight highlight-javascript"><pre>$(<span class="pl-s3">document</span>).fixit();</pre></div>
-
-<p>Sample</p>
-
-<pre><code></code></pre>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/lastdates">lastdates</a></p>
