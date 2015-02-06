@@ -9,7 +9,7 @@
 * Date: Thu Feb 05 2015 15:35:11 GMT+0530 (IST)
 */
 (function($){
-	var e=$(window),sp=0,sd=-1,tx=0,t=0,b=0,h,f=[],fx=[],tL=$(),
+	var e=$(window),d=$(document),sp=0,sd=-1,tx=0,t=0,b=0,h,f=[],fx=[],tL=$(),
 	onScroll=function(){
 		var scroll = e.scrollTop()+t;
 		sd = (scroll > sp) ? 1 : -1;
@@ -79,9 +79,9 @@
 		onScroll();
 	},
 	checkDocumentHeight=function(callback){
-	    var lastHeight = document.body.clientHeight, newHeight, timer;
+	    var lastHeight = d.height(), newHeight, timer;
 	    (function run(){
-	        newHeight = document.body.clientHeight;
+	        newHeight = d.height();
 	        if( lastHeight != newHeight )
 	            callback();
 	        lastHeight = newHeight;
@@ -91,14 +91,14 @@
 	$.fn.fixit=function(options){
 		if(options){
 			if(options.t){t+=options.t;tx+=options.t;}
-			if(options.b) b+=options.b;
-			if(options.f) $.merge(f,options.f);
-			if(options.fx) $.merge(fx,options.fx);
-			if(options.tL) tL=tL.add(options.tL);
+			if(options.b){b+=options.b;}
+			if(options.f){$.merge(f,options.f);}
+			if(options.fx){$.merge(fx,options.fx);}
+			if(options.tL){tL=tL.add(options.tL);}
 		}
 		onResize();
 	};
-	$(document).ready(function(){
+	d.ready(function(){
 		onResize();
 		e.on('resize',onResize);
 		checkDocumentHeight(onResize);
