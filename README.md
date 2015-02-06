@@ -1,6 +1,12 @@
 # fixit
 
-description coming
+fixit is a simple jQuery plugin for making elements fix or snap to particular position while scrolling page
+
+less than 1.6kB
+
+It takes into account the scroll direction and hence fix bottom of menu while scrolling down, and top of menu while scrolling up
+
+It also changes margin-top of already fixed elements when horizontal menu comes and fixes on top
 
 To include
 ```html
@@ -16,6 +22,29 @@ $(document).fixit({
   f:[], // to add list of floating menus
   fx:[], //to add list of horizontal menu bars to fix on top while scrolling
   tL:$(selector) //to add list of elements whose position is to change when fx elements fixes on top and changes windows view area
+});
+
+$(document).fixit({
+  f:[
+    {
+      e:$(selector), // element to float within Parent, parent should have greater height than element
+      t:5, // set margin-top of element while floating
+      b:10, // set margin-bottom of element while floating
+      P:30 // adjust for padding-top of parent while floating
+    },
+    ...
+  ]
+});
+
+$(document).fixit({
+  fx:[
+    {
+      e:$(selector), // element to fix on top while scrolling
+      t:5, // set margin-top of element to fix at
+      P:30 // adjust for padding-top of parent while floating
+    },
+    ...
+  ]
 });
 ```
 
