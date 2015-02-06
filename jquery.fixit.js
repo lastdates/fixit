@@ -1,6 +1,6 @@
 /**
 * fixit 1.0
-* fixit is a simple jQuery plugin for ......
+* fixit makes elements fix or snap to particular position while scrolling
 *
 * Copyright 2015, Atul Gupta
 * Licensed under the MIT license.
