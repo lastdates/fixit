@@ -63,7 +63,8 @@
 		h = e.height()-t-b;
 		for(var i=0;i<f.length;i++){
 			if(f[i].e){
-				f[i]['T']=f[i].e.parent().offset().top;
+				f[i]=$.extend({t:0,b:0,p:0},f[i]);
+				f[i]['T']=f[i].e.parent().offset().top+f[i].p;
 				f[i]['H']=f[i].e.parent().height();
 				f[i]['h']=f[i].e.outerHeight()+f[i].t+f[i].b;
 				f[i]['y']=f[i].t;
