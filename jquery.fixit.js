@@ -72,7 +72,8 @@
 		}
 		for(var i=0;i<fx.length;i++){
 			if(fx[i].e){
-				fx[i]['T']=fx[i].e.parent().offset().top;
+				fx[i]=$.extend({t:0,P:0},fx[i]);
+				fx[i]['T']=fx[i].e.parent().offset().top+fx[i].P;
 			}
 		}
 		onScroll();
@@ -88,11 +89,13 @@
 	    })();
 	};
 	$.fn.fixit=function(options){
-		if(options.t){t+=options.t;tx+=options.t;}
-		if(options.b){b+=options.b;}
-		if(options.f){$.merge(f,options.f);}
-		if(options.fx){$.merge(fx,options.fx);}
-		if(options.tL){tL=tL.add(options.tL);}
+		if(options){
+			if(options.t){t+=options.t;tx+=options.t;}
+			if(options.b) b+=options.b;
+			if(options.f) $.merge(f,options.f);
+			if(options.fx) $.merge(fx,options.fx);
+			if(options.tL) tL=tL.add(options.tL);
+		}
 		onResize();
 	};
 	$(document).ready(function(){
