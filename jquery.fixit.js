@@ -9,7 +9,7 @@
 * Date: Thu Feb 05 2015 15:35:11 GMT+0530 (IST)
 */
 (function($){
-	var e=$(window),d=$(document),sp=0,sd=-1,tx=0,t=0,b=0,h,f=[],fx=[],tL=$(),
+	var e=$(window),d=$(document),sp=0,sd=-1,tx=0,t=0,b=0,h,f=[],fx=[],tL=$(),timer,
 	onScroll=function(){
 		var scroll = e.scrollTop()+t;
 		sd = (scroll > sp) ? 1 : -1;
@@ -59,34 +59,41 @@
 		tL.css({'margin-top':t+'px'});
 	},
 	onResize=function(){
-		sp = e.scrollTop()+t;
 		h = e.height()-t-b;
 		for(var i=0;i<f.length;i++){
 			if(f[i].e){
-				f[i]=$.extend({t:0,b:0,P:0},f[i]);
-				f[i]['T']=f[i].e.parent().offset().top+f[i].P;
-				f[i]['H']=f[i].e.parent().height();
-				f[i]['h']=f[i].e.outerHeight()+f[i].t+f[i].b;
-				f[i]['y']=f[i].t;
+				f[i]=$.extend({t:0,b:0,P:0,T:0,H:0,h:0,y:0},f[i]);
+				f[i].T=f[i].e.parent().offset().top+f[i].P;
+				f[i].H=f[i].e.parent().height();
+				f[i].h=f[i].e.outerHeight()+f[i].t+f[i].b;
 			}
 		}
 		for(var i=0;i<fx.length;i++){
 			if(fx[i].e){
-				fx[i]=$.extend({t:0,P:0},fx[i]);
-				fx[i]['T']=fx[i].e.parent().offset().top+fx[i].P;
+				fx[i]=$.extend({t:0,P:0,T:0},fx[i]);
+				fx[i].T=fx[i].e.parent().offset().top+fx[i].P;
 			}
 		}
 		onScroll();
 	},
-	checkDocumentHeight=function(callback){
-	    var lastHeight = d.height(), newHeight, timer;
-	    (function run(){
-	        newHeight = d.height();
-	        if( lastHeight != newHeight )
-	            callback();
-	        lastHeight = newHeight;
-	        timer = setTimeout(run, 200);
-	    })();
+	monitor=function(){
+		for(var i=0;i<f.length;i++){
+			if(f[i].e){
+				if(f[i].e.parent().offset().top+f[i].P!=f[i].T || f[i].e.parent().height()!=f[i].H || f[i].e.outerHeight()+f[i].t+f[i].b!=f[i].h){
+					onResize();
+					break;
+				}
+			}
+		}
+		for(var i=0;i<fx.length;i++){
+			if(fx[i].e){
+				if(fx[i].e.parent().offset().top+fx[i].P!=fx[i].T){
+					onResize();
+					break;
+				}
+			}
+		}
+		timer = setTimeout(monitor, 30);
 	};
 	$.fn.fixit=function(options){
 		if(options){
@@ -101,7 +108,7 @@
 	d.ready(function(){
 		onResize();
 		e.on('resize',onResize);
-		checkDocumentHeight(onResize);
+		monitor();
 		e.scroll(onScroll);
 	});
 })(jQuery);
