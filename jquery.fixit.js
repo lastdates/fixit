@@ -75,6 +75,7 @@
 			}
 		}
 		onScroll();
+		monitor();
 	},
 	monitor=function(){
 		for(var i=0;i<f.length;i++){
@@ -108,7 +109,6 @@
 	d.ready(function(){
 		onResize();
 		e.on('resize',onResize);
-		monitor();
 		e.scroll(onScroll);
 	});
 })(jQuery);
